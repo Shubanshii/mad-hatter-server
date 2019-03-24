@@ -19,30 +19,30 @@ const initialState = {
   streets: ["Preflop", "Flop", "Turn", "River"],
   street: "Preflop",
   playerInfo: [
-    {
-      id: 1,
-      name: "",
-      stackSize: 100,
-      inHand: true,
-      playerTurn: true,
-      playerIndex: 0,
-      smallBlind: true,
-      bigBlind: false,
-      contributedTowardsToPlay: 0,
-      hasChecked: false
-    },
-    {
-      id: 2,
-      name: "",
-      stackSize: 100,
-      inHand: true,
-      playerTurn: false,
-      playerIndex: 1,
-      smallBlind: false,
-      bigBlind: true,
-      contributedTowardsToPlay: 0,
-      hasChecked: false
-    }
+    // {
+    //   id: 1,
+    //   name: "",
+    //   stackSize: 100,
+    //   inHand: true,
+    //   playerTurn: true,
+    //   playerIndex: 0,
+    //   smallBlind: true,
+    //   bigBlind: false,
+    //   contributedTowardsToPlay: 0,
+    //   hasChecked: false
+    // },
+    // {
+    //   id: 2,
+    //   name: "",
+    //   stackSize: 100,
+    //   inHand: true,
+    //   playerTurn: false,
+    //   playerIndex: 1,
+    //   smallBlind: false,
+    //   bigBlind: true,
+    //   contributedTowardsToPlay: 0,
+    //   hasChecked: false
+    // }
   ],
   potSize: 0,
   // we'll figure out how to add more positions later
@@ -99,14 +99,33 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
-  function handleAddPlayer() {
+  function handleAddPlayer1() {
+    let player1 = {
+      id: 1,
+      name: action.username,
+      stackSize: 100,
+      inHand: true,
+      playerTurn: true,
+      playerIndex: 0,
+      smallBlind: true,
+      bigBlind: false,
+      contributedTowardsToPlay: 0,
+      hasChecked: false
+    };
+    modifiedState = {
+      ...state,
+      playerInfo: [...state.playerInfo, player1]
+    };
+    console.log(modifiedState.playerInfo[0].name);
+
     // this is super ghetto at the momnet
-    modifiedState.playerInfo = state.playerInfo.map(player => {
-      if (player.name === "") {
-        player.name = action.username;
-      }
-      return player;
-    });
+
+    // modifiedState.playerInfo = state.playerInfo.map(player => {
+    //   if (player.name === "") {
+    //     player.name = action.username;
+    //   }
+    //   return player;
+    // });
   }
 
   function setUpNextHand() {
@@ -845,8 +864,8 @@ export const hatterReducer = (state = initialState, action) => {
       handleBeginGame();
 
       break;
-    case actions.ADD_PLAYER:
-      handleAddPlayer();
+    case actions.ADD_PLAYER_1:
+      handleAddPlayer1();
 
       break;
     case actions.FOLD:

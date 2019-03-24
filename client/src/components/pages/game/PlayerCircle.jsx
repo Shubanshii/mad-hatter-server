@@ -28,10 +28,10 @@ export class PlayerCircle extends Component {
             <h3>{this.props.playerInfo[0].name}</h3>
             <h5>{this.props.playerInfo[0].stackSize}</h5>
           </li>
-          <li>
+          {/*<li>
             <h3>{this.props.playerInfo[1].name}</h3>
             <h5>{this.props.playerInfo[1].stackSize}</h5>
-          </li>
+          </li>*/}
         </ul>
       </div>
     );

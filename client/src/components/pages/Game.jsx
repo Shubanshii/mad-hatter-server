@@ -5,7 +5,7 @@ import PlayerDecision from "./game/PlayerDecision";
 import Notification from "./game/Notification";
 import socketIOClient from "socket.io-client";
 import { connect } from "react-redux";
-import { beginGame, addPlayer } from "../../actions";
+import { beginGame, addPlayer1 } from "../../actions";
 
 export class Game extends Component {
   state = {
@@ -29,10 +29,14 @@ export class Game extends Component {
     socket.emit("join", { username, room }, error => {
       if (error) {
         alert(error);
-        this.props.location.href = "/join";
+        // this.props.location.href = "/join";
       }
     });
-    this.props.dispatch(addPlayer(username));
+    socket.emit("join", { username, room });
+    socket.on("joined", data => {
+      console.log(data);
+    });
+    this.props.dispatch(addPlayer1(username));
   }
 
   render() {
@@ -41,10 +45,11 @@ export class Game extends Component {
         <main role="main">
           <header>
             <h1>Table Name</h1>
+            <h2>Test: {this.props.playerCount}</h2>
           </header>
           <Notification />
-          <PlayerCircle />
-          <PlayerDecision socket={this.state.socket} />
+          {/*<PlayerCircle />
+          <PlayerDecision socket={this.state.socket} /> */}
         </main>
       </div>
     );

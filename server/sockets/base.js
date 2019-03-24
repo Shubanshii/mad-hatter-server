@@ -12,8 +12,7 @@ module.exports = function(io) {
       }
 
       socket.join(user.room);
-
-      callback();
+      socket.emit("joined", { room: user.room });
     });
     socket.on("call", data => {
       console.log("logging data", data);

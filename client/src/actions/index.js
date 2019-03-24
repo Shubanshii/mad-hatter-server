@@ -3,9 +3,9 @@ export const beginGame = () => ({
   type: BEGIN_GAME
 });
 
-export const ADD_PLAYER = "ADD_PLAYER";
-export const addPlayer = username => ({
-  type: ADD_PLAYER,
+export const ADD_PLAYER_1 = "ADD_PLAYER_1";
+export const addPlayer1 = username => ({
+  type: ADD_PLAYER_1,
   username
 });
 
