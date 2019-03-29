@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {call, fold, raise, check} from '../../../actions';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { call, fold, raise, check } from "../../../actions";
 
 export class PlayerDecision extends Component {
   fold() {
     this.props.dispatch(fold());
-
   }
 
   call() {
@@ -27,28 +25,28 @@ export class PlayerDecision extends Component {
   render() {
     // const playerCount = this.props.playerCount;
     // const player = this.props.playerInfo.find(player => player.playerTurn === true);
-    console.log('raised', this.props.raised);
-    console.log('street', this.props.street);
+    console.log("raised", this.props.raised);
+    console.log("street", this.props.street);
     let raised = this.props.raised;
     let street = this.props.street;
     let contributed = 0;
     let stackSize = 0;
     this.props.playerInfo.forEach(player => {
-      if(player.playerTurn) {
+      if (player.playerTurn) {
         contributed = player.contributedTowardsToPlay;
         stackSize = player.stackSize;
       }
-    })
-    console.log('cont', contributed);
-    console.log('stacksize', stackSize);
+    });
+    console.log("cont", contributed);
+    console.log("stacksize", stackSize);
     let minRaise = 0;
     let maxRaise = contributed + stackSize;
-    if (street === 'Preflop') {
-      if(!raised) {
+    if (street === "Preflop") {
+      if (!raised) {
         minRaise = this.props.toPlay * 2;
-        console.log('contributed', contributed);
-        console.log('stacksize', stackSize);
-        if(stackSize + contributed < minRaise) {
+        console.log("contributed", contributed);
+        console.log("stacksize", stackSize);
+        if (stackSize + contributed < minRaise) {
           minRaise = stackSize + contributed;
           maxRaise = stackSize + contributed;
         }
@@ -56,31 +54,30 @@ export class PlayerDecision extends Component {
         // minRaise = this.props.toPlay * 2 - 1;
 
         minRaise = this.props.toPlay + this.props.amountRaised;
-        if(stackSize + contributed < minRaise) {
-          console.log('stack of player 2', stackSize);
-          console.log('less than minraise');
+        if (stackSize + contributed < minRaise) {
+          console.log("stack of player 2", stackSize);
+          console.log("less than minraise");
           minRaise = stackSize + contributed;
           maxRaise = stackSize + contributed;
         }
       }
     } else {
-      if(!raised) {
+      if (!raised) {
         minRaise = this.props.maxBuyIn / 100;
         maxRaise = stackSize;
-        if(stackSize < minRaise) {
+        if (stackSize < minRaise) {
           minRaise = stackSize;
           maxRaise = stackSize;
         }
       } else {
         minRaise = this.props.toPlay + this.props.amountRaised;
         maxRaise = contributed + stackSize;
-        if(stackSize + contributed < minRaise) {
+        if (stackSize + contributed < minRaise) {
           minRaise = stackSize + contributed;
           maxRaise = stackSize + contributed;
         }
       }
     }
-
 
     return (
       <div className="App">
@@ -88,12 +85,18 @@ export class PlayerDecision extends Component {
         <h6>100</h6>*/}
         <h2>Pot Size: {this.props.potSize}</h2>
         <form>
-        {/*<h2>Player {this.props.playerTurn} act</h2>*/}
-        <div className="form-section">
-          <button onClick={() => this.check()} type="button" name="check">Check</button>
-          <button onClick={() => this.call()} type="button" name="call">Call</button>
-          <button onClick={() => this.fold()} type="button" name="fold">Fold</button>
-          {/*<div>
+          {/*<h2>Player {this.props.playerTurn} act</h2>*/}
+          <div className="form-section">
+            <button onClick={() => this.check()} type="button" name="check">
+              Check
+            </button>
+            <button onClick={() => this.call()} type="button" name="call">
+              Call
+            </button>
+            <button onClick={() => this.fold()} type="button" name="fold">
+              Fold
+            </button>
+            {/*<div>
               <label>
                 Raise:
                 <input className="amount" type="number" name="amount" placeholder="12" />
@@ -102,7 +105,7 @@ export class PlayerDecision extends Component {
             <label htmlFor="raise">Raise</label>
             <input onClick={() => this.raise()} type="number" name="amount" placeholder="12" />
           </div>*/}
-        </div>
+          </div>
         </form>
         <form onSubmit={e => this.raise(e)}>
           <input
@@ -135,7 +138,7 @@ export class PlayerDecision extends Component {
 }
 
 PlayerDecision.defaultProps = {
-    // title: 'Board'
+  // title: 'Board'
 };
 
 const mapStateToProps = state => ({
