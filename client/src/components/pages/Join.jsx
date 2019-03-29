@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class Join extends Component {
+export class Join extends Component {
   componentDidMount() {
-
+    console.log(this.props.state);
   }
 
   render() {
@@ -29,3 +30,9 @@ export default class Join extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  state: state
+});
+
+export default connect(mapStateToProps)(Join);

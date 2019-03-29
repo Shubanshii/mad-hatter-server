@@ -21,16 +21,22 @@ export class Game extends Component {
     socket.on("call", data => {
       console.log("logging data", data);
     });
+    // const username = this.props.users[0].username;
+    // const username = this.props.users;
+    // console.log("gamecomponent this.props.users", username);
 
-    const { username, room } = Qs.parse(this.props.location.search, {
+    console.log(this.props.state);
+
+    // const userID = this.props.users[0];
+    const { room } = Qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     });
-    console.log("username", username);
+    // console.log("username", username);
     console.log("room", room);
     socket.on("message", message => {
       console.log(message);
     });
-    socket.emit("join", { username, room }, error => {
+    socket.emit("join", { room }, error => {
       if (error) {
         alert(error);
         // this.props.location.href = "/join";
@@ -40,7 +46,7 @@ export class Game extends Component {
     socket.on("joined", data => {
       console.log(data);
     });
-    this.props.dispatch(addPlayer1(username));
+    // this.props.dispatch(addPlayer1(username));
   }
 
   render() {
@@ -61,7 +67,8 @@ export class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.users,
+  state: state,
+  // users: state.users,
   playerCount: state.playerCount,
   playerInfo: state.playerInfo
 });
