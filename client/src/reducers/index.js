@@ -3,6 +3,7 @@
 import * as actions from "../actions";
 console.log("This is the last version");
 const initialState = {
+  room: "",
   users: [],
   playerCount: 2,
   toPlay: 1,
@@ -85,7 +86,7 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function handleSetRoom() {
-    console.log("handling set room", action.room);
+    modifiedState.room = action.room;
   }
 
   function handleBeginGame() {

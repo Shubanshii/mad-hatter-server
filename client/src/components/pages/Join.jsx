@@ -18,10 +18,9 @@ export class Join extends Component {
   render() {
     return (
       <div className="App">
-        {/* JOIN
         <div className="Game-Link">
           <Link to="/Game">Game</Link>
-        </div> */}
+        </div>
         <form onSubmit={e => this.setRoom(e)}>
           <input
             type="text"
