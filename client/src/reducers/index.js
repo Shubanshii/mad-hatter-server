@@ -84,6 +84,10 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
+  function handleSetRoom() {
+    console.log("handling set room", action.room);
+  }
+
   function handleBeginGame() {
     addAllPlayersToHand();
     console.log("inhandpushtest", modifiedState.inHand);
@@ -872,6 +876,10 @@ export const hatterReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.BEGIN_GAME:
       handleBeginGame();
+
+      break;
+    case actions.SET_ROOM:
+      handleSetRoom();
 
       break;
     case actions.ADD_USER:
