@@ -3,6 +3,7 @@
 import * as actions from "../actions";
 console.log("This is the last version");
 const initialState = {
+  users: [],
   playerCount: 2,
   toPlay: 1,
   amountRaised: 0,
@@ -96,6 +97,15 @@ export const hatterReducer = (state = initialState, action) => {
         setContributedTowards(player, bigBlind);
       }
       return player;
+    });
+  }
+
+  function handleAddUser() {
+    console.log("from reducer", action.user + " " + action.id);
+
+    modifiedState.users.push({
+      username: action.user,
+      id: action.id
     });
   }
 
@@ -864,6 +874,8 @@ export const hatterReducer = (state = initialState, action) => {
       handleBeginGame();
 
       break;
+    case actions.ADD_USER:
+      handleAddUser();
     case actions.ADD_PLAYER_1:
       handleAddPlayer1();
 
@@ -891,5 +903,6 @@ export const hatterReducer = (state = initialState, action) => {
     default:
       console.log("No action chosen");
   }
+  console.log(modifiedState);
   return modifiedState;
 };

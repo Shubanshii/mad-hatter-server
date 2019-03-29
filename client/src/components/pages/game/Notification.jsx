@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 //import {beginHand} from './actions';
 
 export class Notification extends Component {
@@ -27,23 +27,20 @@ export class Notification extends Component {
   // }
 
   render() {
-
     let playerInfo = this.props.playerInfo;
     let playerTurn;
     let smallBlind;
     let bigBlind;
-    for(var i = 0; i< playerInfo.length; i++) {
-      if(playerInfo[i].smallBlind === true) {
+    for (var i = 0; i < playerInfo.length; i++) {
+      if (playerInfo[i].smallBlind === true) {
         smallBlind = playerInfo[i].name;
-      }
-      else if(playerInfo[i].bigBlind === true) {
+      } else if (playerInfo[i].bigBlind === true) {
         bigBlind = playerInfo[i].name;
       }
 
-      if(playerInfo[i].playerTurn) {
+      if (playerInfo[i].playerTurn) {
         playerTurn = playerInfo[i].name;
       }
-
     }
     // const player = this.props.playerInfo.find(player => player.playerTurn === true);
     // console.log(this.props.playerInfo);
@@ -63,7 +60,7 @@ export class Notification extends Component {
 }
 
 Notification.defaultProps = {
-    // title: 'Board'
+  // title: 'Board'
 };
 
 const mapStateToProps = state => ({

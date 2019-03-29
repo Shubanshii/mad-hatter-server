@@ -3,6 +3,13 @@ export const beginGame = () => ({
   type: BEGIN_GAME
 });
 
+export const ADD_USER = "ADD_USER";
+export const addUser = (user, id) => ({
+  type: ADD_USER,
+  user,
+  id
+});
+
 export const ADD_PLAYER_1 = "ADD_PLAYER_1";
 export const addPlayer1 = username => ({
   type: ADD_PLAYER_1,

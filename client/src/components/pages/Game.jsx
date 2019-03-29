@@ -13,6 +13,7 @@ export class Game extends Component {
   };
   componentDidMount() {
     const socket = socketIOClient("http://127.0.0.1:5000");
+
     this.setState({
       socket
     });
@@ -26,13 +27,16 @@ export class Game extends Component {
     });
     console.log("username", username);
     console.log("room", room);
+    socket.on("message", message => {
+      console.log(message);
+    });
     socket.emit("join", { username, room }, error => {
       if (error) {
         alert(error);
         // this.props.location.href = "/join";
       }
     });
-    socket.emit("join", { username, room });
+
     socket.on("joined", data => {
       console.log(data);
     });
@@ -57,6 +61,7 @@ export class Game extends Component {
 }
 
 const mapStateToProps = state => ({
+  users: state.users,
   playerCount: state.playerCount,
   playerInfo: state.playerInfo
 });
