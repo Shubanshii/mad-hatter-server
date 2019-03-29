@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Link, NavLink, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import { setRoom } from "../../actions";
 
 export class Join extends Component {
   componentDidMount() {
@@ -11,6 +12,7 @@ export class Join extends Component {
     e.preventDefault();
     const value = this.input.value;
     console.log("room", value);
+    this.props.dispatch(setRoom(value));
   }
 
   render() {

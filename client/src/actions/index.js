@@ -10,6 +10,12 @@ export const addUser = (user, id) => ({
   id
 });
 
+export const SET_ROOM = "SET_ROOM";
+export const setRoom = room => ({
+  type: SET_ROOM,
+  room
+});
+
 export const ADD_PLAYER_1 = "ADD_PLAYER_1";
 export const addPlayer1 = username => ({
   type: ADD_PLAYER_1,
