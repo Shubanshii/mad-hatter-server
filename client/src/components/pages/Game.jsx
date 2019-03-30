@@ -18,9 +18,10 @@ export class Game extends Component {
       socket
     });
 
-    console.log("users", this.props.users);
-    console.log("room", this.props.room);
-    socket.on("join", () => {});
+    const userInfo = this.props.users[0];
+    const room = this.props.room;
+    // figure out error handling later
+    socket.emit("join", { userInfo, room });
   }
 
   render() {
