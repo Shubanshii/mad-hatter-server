@@ -16,10 +16,10 @@ export const setRoom = room => ({
   room
 });
 
-export const ADD_PLAYER_1 = "ADD_PLAYER_1";
-export const addPlayer1 = username => ({
-  type: ADD_PLAYER_1,
-  username
+export const ADD_PLAYER = "ADD_PLAYER";
+export const addPlayer = userInfo => ({
+  type: ADD_PLAYER,
+  userInfo
 });
 
 export const BEGIN_HAND = "BEGIN_HAND";

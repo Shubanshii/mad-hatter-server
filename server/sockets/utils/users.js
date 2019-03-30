@@ -7,11 +7,12 @@ const addUser = ({ id, userInfo, room }) => {
   console.log("adduser", userInfo);
 
   // Validate the data
-  if (!userInfo || !room) {
-    return {
-      error: "Username and room are required!"
-    };
-  }
+  // handle error handling later
+  // if (!userInfo || !room) {
+  //   return {
+  //     error: "Username and room are required!"
+  //   };
+  // }
 
   // Check for existing user
   // handle error handling later

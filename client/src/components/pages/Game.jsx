@@ -5,7 +5,7 @@ import PlayerDecision from "./game/PlayerDecision";
 import Notification from "./game/Notification";
 import socketIOClient from "socket.io-client";
 import { connect } from "react-redux";
-import { beginGame, addPlayer1 } from "../../actions";
+import { beginGame, addPlayer } from "../../actions";
 
 export class Game extends Component {
   state = {
@@ -22,9 +22,16 @@ export class Game extends Component {
     const room = this.props.room;
     // figure out error handling later
     socket.emit("join", { userInfo, room });
+    socket.on("message", message => {
+      console.log(message);
+    });
+    this.props.dispatch(addPlayer(userInfo));
   }
 
   render() {
+    // this.state.socket.on("message", message => {
+    //   console.log(message);
+    // });
     return (
       <div className="App">
         <main role="main">

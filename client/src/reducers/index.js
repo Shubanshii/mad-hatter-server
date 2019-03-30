@@ -114,10 +114,10 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
-  function handleAddPlayer1() {
-    let player1 = {
-      id: 1,
-      name: action.username,
+  function handleAddPlayer() {
+    let player = {
+      index: 0,
+      userInfo: action.userInfo,
       stackSize: 100,
       inHand: true,
       playerTurn: true,
@@ -127,20 +127,7 @@ export const hatterReducer = (state = initialState, action) => {
       contributedTowardsToPlay: 0,
       hasChecked: false
     };
-    modifiedState = {
-      ...state,
-      playerInfo: [...state.playerInfo, player1]
-    };
-    console.log(modifiedState.playerInfo[0].name);
-
-    // this is super ghetto at the momnet
-
-    // modifiedState.playerInfo = state.playerInfo.map(player => {
-    //   if (player.name === "") {
-    //     player.name = action.username;
-    //   }
-    //   return player;
-    // });
+    modifiedState.playerInfo.push(player);
   }
 
   function setUpNextHand() {
@@ -885,8 +872,10 @@ export const hatterReducer = (state = initialState, action) => {
       break;
     case actions.ADD_USER:
       handleAddUser();
-    case actions.ADD_PLAYER_1:
-      handleAddPlayer1();
+
+      break;
+    case actions.ADD_PLAYER:
+      handleAddPlayer();
 
       break;
     case actions.FOLD:
