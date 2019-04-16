@@ -12,8 +12,8 @@ module.exports = function(io) {
       console.log("basejs socketid", socket.id);
       const { user } = addUser({ id: socket.id, userInfo, room });
 
-      socket.join(room);
-      socket.emit("message", "Welcome!");
+      socket.join(user.room);
+      socket.broadcast.to(user.room).emit("message", "Welcome!");
 
       // if (error) {
       //   return callback(error);
