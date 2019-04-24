@@ -13,7 +13,7 @@ module.exports = function(io) {
       const { user } = addUser({ id: socket.id, userInfo, room });
 
       socket.join(user.room);
-      socket.broadcast.to(user.room).emit("message", "Welcome!");
+      socket.broadcast.to(user.room).emit("message", "User joined!");
 
       // if (error) {
       //   return callback(error);
